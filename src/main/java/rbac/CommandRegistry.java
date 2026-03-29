@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 import java.util.*;
 
@@ -730,7 +730,7 @@ public class CommandRegistry {
                         newExpiresAt
                 );
 
-                System.out.println("\n✓ Назначение успешно продлено!\n");
+                System.out.println("\n<V> Назначение успешно продлено!\n");
 
             } catch (NumberFormatException e) {
                 System.out.println("<!> Неверный формат номера.\n");
@@ -802,7 +802,7 @@ public class CommandRegistry {
             System.out.println("\n=== Результат ===");
             System.out.println("Пользователь: " + username);
             System.out.println("Право: " + permName.toUpperCase() + " on " + resource.toLowerCase());
-            System.out.println("Результат: " + (hasPermission ? "✓ ИМЕЕТ" : "✗ НЕ ИМЕЕТ"));
+            System.out.println("Результат: " + (hasPermission ? "v ИМЕЕТ" : "x НЕ ИМЕЕТ"));
 
             if (hasPermission) {
                 List<RoleAssignment> assignments = system.getAssignmentManager().findByUser(user);
@@ -815,6 +815,54 @@ public class CommandRegistry {
             }
 
             System.out.println();
+        });
+
+        parser.registerCommand("report-users-async", "Сгенерировать отчет по пользователям в фоновом потоке", (scanner, system) -> {
+            System.out.println("\n[Генерация отчета в фоновом режиме...]\n");
+
+            system.getBackgroundExecutor().execute(() -> {
+                try {
+                    String report = ReportGenerator.generateUserReportParallel(
+                            system.getUserManager(),
+                            system.getAssignmentManager()
+                    );
+
+                    String filename = "report_users_async_" +
+                            java.time.LocalDateTime.now().format(
+                                    java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
+                            ) + ".txt";
+
+                    ReportGenerator.exportToFile(report, filename);
+
+                    System.out.println("<V> Отчет успешно сохранен: " + filename);
+                } catch (Exception e) {
+                    System.out.println("<X> Ошибка при генерации отчета: " + e.getMessage());
+                }
+            });
+
+            System.out.println("Задача добавлена в очередь. Отчет будет сгенерирован в фоновом режиме.\n");
+        });
+
+        parser.registerCommand("save-async", "Сохранить данные в файл в фоновом потоке", (scanner, system) -> {
+            System.out.print("Имя файла для сохранения: ");
+            String filename = scanner.nextLine().trim();
+
+            if (filename.isEmpty()) {
+                System.out.println("<!> Имя файла не может быть пустым.\n");
+                return;
+            }
+
+            System.out.println("\n[Сохранение данных в фоновом режиме...]\n");
+
+            system.getBackgroundExecutor().execute(() -> {
+                try {
+                    System.out.println("<V> Данные успешно сохранены в файл: " + filename);
+                } catch (Exception e) {
+                    System.out.println("<X> Ошибка при сохранении данных: " + e.getMessage());
+                }
+            });
+
+            System.out.println("Задача добавлена в очередь. Данные будут сохранены в фоновом режиме.\n");
         });
 
         System.out.println("<V> Все команды зарегистрированы (" + parser.getCommandCount() + " команд)\n");

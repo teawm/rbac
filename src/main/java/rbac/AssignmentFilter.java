@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 @FunctionalInterface
 public interface AssignmentFilter {

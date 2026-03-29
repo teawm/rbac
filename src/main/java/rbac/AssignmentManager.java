@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

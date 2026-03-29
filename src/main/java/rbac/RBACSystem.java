@@ -1,20 +1,21 @@
-package rbac;
+package main.java.rbac;
 
 import java.util.*;
 
-/**
- * Главный класс системы управления доступом RBAC
- */
 public class RBACSystem {
     private final UserManager userManager;
     private final RoleManager roleManager;
     private final AssignmentManager assignmentManager;
+    private final BackgroundExecutor backgroundExecutor;
+    private final AuditLog auditLog;
     private String currentUser;
 
     public RBACSystem() {
         this.userManager = new UserManager();
         this.roleManager = new RoleManager();
         this.assignmentManager = new AssignmentManager();
+        this.backgroundExecutor = new BackgroundExecutor();
+        this.auditLog = new AuditLog();
         this.currentUser = "system";
     }
 
@@ -41,9 +42,6 @@ public class RBACSystem {
         this.currentUser = username.trim();
     }
 
-    /**
-     * Инициализация системы с начальными данными
-     */
     public void initialize() {
         System.out.println("[Инициализация системы RBAC]\n");
 
@@ -105,10 +103,14 @@ public class RBACSystem {
         System.out.println("\n[Инициализация завершена.]\n");
     }
 
-    /**
-     * Генерация статистики системы
-     * @return форматированная строка со статистикой
-     */
+    public BackgroundExecutor getBackgroundExecutor() {
+        return backgroundExecutor;
+    }
+
+    public AuditLog getAuditLog() {
+        return auditLog;
+    }
+
     public String generateStatistics() {
         StringBuilder sb = new StringBuilder();
         sb.append("[Статистика системы RBAC.]\n");
