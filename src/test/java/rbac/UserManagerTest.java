@@ -1,4 +1,4 @@
-package rbac;
+package test.java.rbac;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package rbac;
+package test.java.rbac;
 
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RoleTest {
 
-    // Очищаем статический список перед каждым тестом
     @BeforeEach
     void clearRoleNames() {
         Role.clearExistingNamesForTesting();

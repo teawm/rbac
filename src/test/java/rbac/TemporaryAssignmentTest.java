@@ -1,4 +1,4 @@
-package rbac;
+package test.java.rbac;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ public class TemporaryAssignmentTest {
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    // Очищаем статические данные перед каждым тестом
     @BeforeEach
     void clearRoleNames() {
         Role.clearExistingNamesForTesting();
