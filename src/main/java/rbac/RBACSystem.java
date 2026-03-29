@@ -6,12 +6,16 @@ public class RBACSystem {
     private final UserManager userManager;
     private final RoleManager roleManager;
     private final AssignmentManager assignmentManager;
+    private final BackgroundExecutor backgroundExecutor;
+    private final AuditLog auditLog;
     private String currentUser;
 
     public RBACSystem() {
         this.userManager = new UserManager();
         this.roleManager = new RoleManager();
         this.assignmentManager = new AssignmentManager();
+        this.backgroundExecutor = new BackgroundExecutor();
+        this.auditLog = new AuditLog();
         this.currentUser = "system";
     }
 
@@ -97,6 +101,14 @@ public class RBACSystem {
         }
 
         System.out.println("\n[Инициализация завершена.]\n");
+    }
+
+    public BackgroundExecutor getBackgroundExecutor() {
+        return backgroundExecutor;
+    }
+
+    public AuditLog getAuditLog() {
+        return auditLog;
     }
 
     public String generateStatistics() {
