@@ -1,6 +1,7 @@
 package main.java.rbac;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class RBACSystem {
     private final UserManager userManager;
@@ -142,5 +143,46 @@ public class RBACSystem {
         sb.append("  > Временные: ").append(temporaryCount).append("\n");
 
         return sb.toString();
+    }
+
+    private static final long CHECK_INTERVAL_SECONDS = 60;
+
+    public void startExpirationChecker() {
+        backgroundExecutor.scheduleAtFixedRate(() -> {
+            try {
+                checkExpiredAssignments();
+            } catch (Exception e) {
+                System.err.println("Ошибка при проверке истекших назначений: " + e.getMessage());
+            }
+        }, 0, CHECK_INTERVAL_SECONDS);
+
+        System.out.println("[v] Периодическая проверка истекших назначений запущена (каждые " +
+                CHECK_INTERVAL_SECONDS + " секунд)");
+    }
+
+    private void checkExpiredAssignments() {
+        List<RoleAssignment> allAssignments = assignmentManager.findAll();
+
+        List<TemporaryAssignment> expired = allAssignments.stream()
+                .filter(a -> a instanceof TemporaryAssignment)
+                .map(a -> (TemporaryAssignment) a)
+                .filter(a -> !a.isActive())
+                .toList();
+
+        if (!expired.isEmpty()) {
+            StringBuilder logMessage = new StringBuilder();
+            logMessage.append("Найдено истёкших назначений: ").append(expired.size()).append("\n");
+
+            for (TemporaryAssignment assignment : expired) {
+                logMessage.append("  - ").append(assignment.user().username())
+                        .append(" -> ").append(assignment.role().name())
+                        .append(" (истекло: ").append(assignment.expiresAt()).append(")\n");
+            }
+
+            auditLog.log("EXPIRATION_CHECK", "system", "Temporary Assignments", logMessage.toString());
+        }
+
+        String stats = generateStatistics();
+        auditLog.log("STATISTICS", "system", "System Stats", stats);
     }
 }
