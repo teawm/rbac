@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

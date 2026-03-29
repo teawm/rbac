@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 public class RoleFilters {
 

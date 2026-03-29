@@ -1,22 +1,15 @@
-package rbac;
+package main.java.rbac;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-/**
- * Временное назначение роли пользователю
- * Расширяет базовый класс назначений
- */
 public class TemporaryAssignment extends AbstractRoleAssignment {
     private String expiresAt;
     private boolean autoRenew;
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    /**
-     * Конструктор с генерацией уникального идентификатора
-     */
     public TemporaryAssignment(User user, Role role, AssignmentMetadata metadata, String expiresAt) {
         super(user, role, metadata);
         validateExpirationDate(expiresAt);
@@ -24,9 +17,6 @@ public class TemporaryAssignment extends AbstractRoleAssignment {
         this.autoRenew = false;
     }
 
-    /**
-     * Конструктор с предустановленным идентификатором (для тестирования)
-     */
     TemporaryAssignment(String assignmentId, User user, Role role, AssignmentMetadata metadata,
                         String expiresAt, boolean autoRenew) {
         super(assignmentId, user, role, metadata);
@@ -64,24 +54,15 @@ public class TemporaryAssignment extends AbstractRoleAssignment {
         return "TEMPORARY";
     }
 
-    /**
-     * Продлить назначение до новой даты
-     */
     public void extend(String newExpirationDate) {
         validateExpirationDate(newExpirationDate);
         this.expiresAt = newExpirationDate.trim();
     }
 
-    /**
-     * Проверить, истекло ли назначение
-     */
     public boolean isExpired() {
         return !isActive();
     }
 
-    /**
-     * Получить оставшееся время до истечения
-     */
     public String getTimeRemaining() {
         try {
             LocalDateTime expiry = LocalDateTime.parse(expiresAt, DATE_FORMATTER);
@@ -103,9 +84,6 @@ public class TemporaryAssignment extends AbstractRoleAssignment {
         }
     }
 
-    /**
-     * Установить автопродление
-     */
     public void setAutoRenew(boolean autoRenew) {
         this.autoRenew = autoRenew;
     }

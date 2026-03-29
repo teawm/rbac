@@ -1,4 +1,4 @@
-package rbac;
+package main.java.rbac;
 
 import java.io.*;
 import java.util.*;
