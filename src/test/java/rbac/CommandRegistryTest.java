@@ -1,4 +1,4 @@
-package test.java.rbac;
+package rbac;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class CommandRegistryTest {
 
         CommandRegistry.registerAllCommands(parser);
 
-        assertEquals(24, parser.getCommandCount(), "Должно быть зарегистрировано 23 команды");
+        assertEquals(26, parser.getCommandCount(), "Должно быть зарегистрировано 25 команды");
     }
 
     @Test

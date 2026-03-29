@@ -1,4 +1,4 @@
-package main.java.rbac;
+package rbac;
 
 @FunctionalInterface
 public interface RoleFilter {

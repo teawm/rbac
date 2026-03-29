@@ -1,4 +1,4 @@
-package main.java.rbac;
+package rbac;
 
 public class UserFilters {
 

@@ -1,4 +1,4 @@
-package test.java.rbac;
+package rbac;
 
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;

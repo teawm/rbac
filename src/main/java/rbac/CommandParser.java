@@ -1,4 +1,4 @@
-package main.java.rbac;
+package rbac;
 
 import java.util.*;
 import java.util.Scanner;
