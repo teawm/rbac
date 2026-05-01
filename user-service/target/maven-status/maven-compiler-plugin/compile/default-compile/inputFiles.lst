@@ -1,0 +1,12 @@
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/repository/PassengerRepository.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/entity/Driver.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/entity/Passenger.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/service/DriverService.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/service/PassengerService.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/UserServiceApplication.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/dto/PassengerRequest.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/controller/PassengerController.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/dto/DriverResponse.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/controller/DriverController.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/repository/DriverRepository.java
+/mnt/c/Folder/rbac/user-service/src/main/java/com/taxi/userservice/dto/DriverRequest.java

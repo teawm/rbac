@@ -1,0 +1,15 @@
+com/taxi/userservice/dto/DriverRequest.class
+com/taxi/userservice/entity/Passenger$PassengerBuilder.class
+com/taxi/userservice/controller/PassengerController.class
+com/taxi/userservice/repository/PassengerRepository.class
+com/taxi/userservice/dto/PassengerRequest.class
+com/taxi/userservice/entity/Passenger.class
+com/taxi/userservice/entity/Driver$DriverBuilder.class
+com/taxi/userservice/entity/Driver.class
+com/taxi/userservice/dto/DriverResponse.class
+com/taxi/userservice/service/PassengerService.class
+com/taxi/userservice/entity/Driver$DriverStatus.class
+com/taxi/userservice/UserServiceApplication.class
+com/taxi/userservice/controller/DriverController.class
+com/taxi/userservice/repository/DriverRepository.class
+com/taxi/userservice/service/DriverService.class
