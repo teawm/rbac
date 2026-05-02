@@ -1,0 +1,8 @@
+com/taxi/tripservice/repository/TripRepository.class
+com/taxi/tripservice/entity/Trip.class
+com/taxi/tripservice/service/TripService.class
+com/taxi/tripservice/dto/TripRequest.class
+com/taxi/tripservice/entity/Trip$TripStatus.class
+com/taxi/tripservice/entity/Trip$TripBuilder.class
+com/taxi/tripservice/controller/TripController.class
+com/taxi/tripservice/TripServiceApplication.class

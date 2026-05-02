@@ -1,0 +1,6 @@
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/controller/TripController.java
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/TripServiceApplication.java
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/dto/TripRequest.java
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/repository/TripRepository.java
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/entity/Trip.java
+/mnt/c/Folder/rbac/trip-service/src/main/java/com/taxi/tripservice/service/TripService.java

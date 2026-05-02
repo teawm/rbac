@@ -42,4 +42,14 @@ public class DriverController {
         Driver driver = driverService.updateDriverStatus(id, status);
         return ResponseEntity.ok(DriverResponse.fromEntity(driver));
     }
+
+    @PostMapping("/reserve")
+    public ResponseEntity<DriverResponse> reserveDriver() {
+        try {
+            Driver driver = driverService.reserveAvailableDriver();
+            return ResponseEntity.ok(DriverResponse.fromEntity(driver));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
 }

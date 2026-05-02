@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taxi_db
+    username: taxi_user
+    password: taxi_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+user:
+  service:
+    url: http://localhost:8081

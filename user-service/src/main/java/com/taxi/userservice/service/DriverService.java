@@ -7,6 +7,7 @@ import com.taxi.userservice.repository.DriverRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +52,18 @@ public class DriverService {
     public Driver findAvailableDriver() {
         return driverRepository.findFirstAvailableDriver()
                 .orElseThrow(() -> new RuntimeException("No available drivers"));
+    }
+
+    @Transactional
+    public Driver reserveAvailableDriver() {
+        Optional<Driver> driverOpt = driverRepository.findFirstAvailableDriver();
+
+        if (driverOpt.isEmpty()) {
+            throw new RuntimeException("No available drivers");
+        }
+
+        Driver driver = driverOpt.get();
+        driver.setStatus(Driver.DriverStatus.BUSY);
+        return driverRepository.save(driver);
     }
 }
