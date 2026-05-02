@@ -1,0 +1,10 @@
+com/taxi/notificationservice/repository/NotificationRepository.class
+com/taxi/notificationservice/entity/NotificationTask$NotificationStatus.class
+com/taxi/notificationservice/service/NotificationService.class
+com/taxi/notificationservice/config/ThreadPoolConfig.class
+com/taxi/notificationservice/entity/NotificationTask$NotificationTaskBuilder.class
+com/taxi/notificationservice/controller/NotificationController$CreateNotificationRequest.class
+com/taxi/notificationservice/controller/NotificationController.class
+com/taxi/notificationservice/NotificationServiceApplication.class
+com/taxi/notificationservice/entity/NotificationTask.class
+com/taxi/notificationservice/service/NotificationService$NotificationStats.class

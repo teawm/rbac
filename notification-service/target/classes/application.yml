@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/taxi_db}
+    username: ${SPRING_DATASOURCE_USERNAME:taxi_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:taxi_password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
+    show-sql: true
+
+notification:
+  thread-pool:
+    core-size: 3
+    max-size: 10
+    queue-capacity: 50
+    keep-alive-seconds: 60
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
