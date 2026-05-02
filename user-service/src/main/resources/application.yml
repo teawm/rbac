@@ -1,27 +1,18 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT:8082}
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/taxi_db
-    username: taxi_user
-    password: taxi_password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/taxi_db}
+    username: ${SPRING_DATASOURCE_USERNAME:taxi_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:taxi_password}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  sql:
-    init:
-      mode: always
-
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+user:
+  service:
+    url: ${USER_SERVICE_URL:http://localhost:8081}
