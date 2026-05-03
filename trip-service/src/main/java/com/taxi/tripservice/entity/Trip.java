@@ -5,6 +5,9 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
 @Entity
 @Table(name = "trips")
 @Data
@@ -43,6 +46,14 @@ public class Trip {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Min(1)
+    @Max(5)
+    @Column(name = "rating")
+    private Integer rating;
+
+    @Column(name = "feedback")
+    private String feedback;
 
     @PrePersist
     protected void onCreate() { createdAt = LocalDateTime.now(); }

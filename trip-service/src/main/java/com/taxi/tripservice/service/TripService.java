@@ -20,14 +20,15 @@ import java.util.Map;
 public class TripService {
 
     private final TripRepository tripRepository;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final PricingService pricingService;
 
-    @Value("${user.service.url:http://user-service:8081}")
-    private String userServiceUrl;
 
-    @Value("${notification.service.url:http://notification-service:8083}")
-    private String notificationServiceUrl;
+    @Value("${user.service.url:http://localhost:8081}")
+    private String userServiceUrl = "http://localhost:8081";
+
+    @Value("${notification.service.url:http://localhost:8083}")
+    private String notificationServiceUrl = "http://localhost:8083";
 
     @Transactional
     public Trip createTrip(TripRequest request) {
@@ -81,6 +82,21 @@ public class TripService {
                 trip.getId(), price, distance, duration);
 
         return trip;
+    }
+
+    @Transactional
+    public Trip rateTrip(Long tripId, Integer rating, String feedback) {
+        Trip trip = tripRepository.findById(tripId)
+                .orElseThrow(() -> new RuntimeException("Trip not found with id: " + tripId));
+
+        if (rating < 1 || rating > 5) {
+            throw new RuntimeException("Rating must be between 1 and 5");
+        }
+        trip.setRating(rating);
+        trip.setFeedback(feedback);
+
+        log.info("Trip #{} rated: {} stars", tripId, rating);
+        return tripRepository.save(trip);
     }
 
     public Trip getTripById(Long id) {

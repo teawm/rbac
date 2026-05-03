@@ -1,6 +1,7 @@
 package com.taxi.tripservice.controller;
 
 import com.taxi.tripservice.dto.TripRequest;
+import com.taxi.tripservice.dto.RatingRequest;
 import com.taxi.tripservice.entity.Trip;
 import com.taxi.tripservice.service.TripService;
 import jakarta.validation.Valid;
@@ -18,6 +19,15 @@ public class TripController {
     @PostMapping
     public ResponseEntity<Trip> createTrip(@Valid @RequestBody TripRequest request) {
         return ResponseEntity.ok(tripService.createTrip(request));
+    }
+
+    @PostMapping("/{id}/rate")
+    public ResponseEntity<Trip> rateTrip(
+            @PathVariable Long id,
+            @Valid @RequestBody RatingRequest request) {
+
+        Trip updatedTrip = tripService.rateTrip(id, request.getRating(), request.getFeedback());
+        return ResponseEntity.ok(updatedTrip);
     }
 
     @GetMapping("/{id}")

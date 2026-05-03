@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.taxi.tripservice.service.TripServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.163 s -- in com.taxi.tripservice.service.TripServiceTest
