@@ -27,7 +27,16 @@ public class Trip {
 
     private String origin;
     private String destination;
+
+    @Column(name = "price")
+    @Builder.Default
     private BigDecimal price = BigDecimal.ZERO;
+
+    @Column(name = "distance_km")
+    private Double distanceKm;
+
+    @Column(name = "duration_min")
+    private Integer durationMin;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
