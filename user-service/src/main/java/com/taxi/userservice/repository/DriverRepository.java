@@ -15,6 +15,5 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
     boolean existsByLicenseNumber(String licenseNumber);
 
     @Lock(jakarta.persistence.LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT d FROM Driver d WHERE d.status = 'AVAILABLE'")
-    Optional<Driver> findFirstAvailableDriver();
+    Optional<Driver> findFirstByStatus(Driver.DriverStatus status);
 }

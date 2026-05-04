@@ -49,14 +49,10 @@ public class DriverService {
         return driver;
     }
 
-    public Driver findAvailableDriver() {
-        return driverRepository.findFirstAvailableDriver()
-                .orElseThrow(() -> new RuntimeException("No available drivers"));
-    }
-
     @Transactional
     public Driver reserveAvailableDriver() {
-        Optional<Driver> driverOpt = driverRepository.findFirstAvailableDriver();
+        Optional<Driver> driverOpt = driverRepository
+                .findFirstByStatus(Driver.DriverStatus.AVAILABLE);
 
         if (driverOpt.isEmpty()) {
             throw new RuntimeException("No available drivers");
